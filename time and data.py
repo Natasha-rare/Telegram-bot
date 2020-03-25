@@ -8,26 +8,22 @@ def help(update, context):
     update.message.reply_text(
         "Я пока не умею помогать... Я только ваше эхо.")
 
+
 def time_1(update, context):
-    update.message.reply_text(time.asctime())
+    t = ' '.join(str(time.asctime()).split()[1:3]) + str(str(time.asctime()).split()[-1])
+    update.message.reply_text(t)
+
+def date(update, context):
+    update.message.reply_text(str(time.asctime()).split()[-2])
 
 def start(update, context):
     update.message.reply_text(
         "Привет! Я эхо-бот. Напишите мне что-нибудь, и я пришлю это назад!")
 
-# Определяем функцию-обработчик сообщений.
-# У неё два параметра, сам бот и класс updater, принявший сообщение.
-def echo(update, context):
-    # У объекта класса Updater есть поле message,
-    # являющееся объектом сообщения.
-    # У message есть поле text, содержащее текст полученного сообщения,
-    # а также метод reply_text(str),
-    # отсылающий ответ пользователю, от которого получено сообщение.
-    update.message.reply_text(f'Я получил сообщение {update.message.text}')
 
 def main():
 
-    updater = Updater('1102656386:AAGo4YmEWgfo6z-x0qMtLKo5occ_RLp9w2o', use_context=True)
+    updater = Updater(TOKEN, use_context=True)
     # Создаём объект updater.
     # Вместо слова "TOKEN" надо разместить полученный от @BotFather токен
 
@@ -39,12 +35,11 @@ def main():
     # После регистрации обработчика в диспетчере
     # эта функция будет вызываться при получении сообщения
     # с типом "текст", т. е. текстовых сообщений.
-    text_handler = MessageHandler(Filters.text, echo)
 
     # Регистрируем обработчик в диспетчере.
-    dp.add_handler(text_handler)
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler('time', time_1))
     # Запускаем цикл приема и обработки сообщений.
     updater.start_polling()
 
