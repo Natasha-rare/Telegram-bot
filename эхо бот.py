@@ -15,9 +15,21 @@ def echo(update, context):
 
 
 def main():
+    REQUEST_KWARGS = {
+        'proxy_url': 'socks5://ip:port',  # Адрес прокси сервера
+        # Опционально, если требуется аутентификация:
+        # 'urllib3_proxy_kwargs': {
+        #     'assert_hostname': 'False',
+        #     'cert_reqs': 'CERT_NONE'
+        #     'username': 'user',
+        #     'password': 'password'
+        # }
+    }
+
+    updater = Updater('1102656386:AAGo4YmEWgfo6z-x0qMtLKo5occ_RLp9w2o', use_context=True,
+                      request_kwargs=REQUEST_KWARGS)
     # Создаём объект updater.
     # Вместо слова "TOKEN" надо разместить полученный от @BotFather токен
-    updater = Updater(TOKEN, use_context=True)
 
     # Получаем из него диспетчер сообщений.
     dp = updater.dispatcher
