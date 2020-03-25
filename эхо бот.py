@@ -13,21 +13,9 @@ def echo(update, context):
     # отсылающий ответ пользователю, от которого получено сообщение.
     update.message.reply_text(f'Я получил сообщение {update.message.text}')
 
-
 def main():
-    REQUEST_KWARGS = {
-        'proxy_url': 'socks5://ip:port',  # Адрес прокси сервера
-        # Опционально, если требуется аутентификация:
-        # 'urllib3_proxy_kwargs': {
-        #     'assert_hostname': 'False',
-        #     'cert_reqs': 'CERT_NONE'
-        #     'username': 'user',
-        #     'password': 'password'
-        # }
-    }
 
-    updater = Updater('1102656386:AAGo4YmEWgfo6z-x0qMtLKo5occ_RLp9w2o', use_context=True,
-                      request_kwargs=REQUEST_KWARGS)
+    updater = Updater('1102656386:AAGo4YmEWgfo6z-x0qMtLKo5occ_RLp9w2o', use_context=True)
     # Создаём объект updater.
     # Вместо слова "TOKEN" надо разместить полученный от @BotFather токен
 
